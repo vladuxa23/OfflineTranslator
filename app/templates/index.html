@@ -9,53 +9,77 @@
 {% block content %}
 
 <div class="center">
-    <div class="row">
+    <form action="/" method="post">
+        <div class="row">
 
-        <div class="column">
-            <label>Перевести с:
-                <select id="source_lang">
-                    <option>ru</option>
-                    <option>en</option>
-                    <option>es</option>
-                </select>
-            </label>
+            <div class="column">
+                <label>Перевести с:
+                    <select id="source_lang" name="source_lang">
+                        {% for item in lang_pairs %}
+                        <option>{{ item[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="column">
+                <label>Перевести на:
+                    <select id="target_lang" name="target_lang">
+                        <option>ru</option>
+                    </select>
+                </label>
+            </div>
+
         </div>
 
-        <div class="column">
-            <label>Перевести на:
-                <select id="target_lang">
-                    <option>ru</option>
-                    <option>en</option>
-                    <option>es</option>
-                </select>
-            </label>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="column">
-            <div class="container-textarea">
-                <div class="sub-container-textarea">
-                    <label for="source_text"></label>
-                    <textarea id="source_text" placeholder="Введите исходный текст" maxlength="250" cols="80" rows="20"></textarea>
+        <div class="row">
+            <div class="column">
+                <div class="container-textarea">
+                    <div class="sub-container-textarea">
+                        <label for="source_text"></label>
+                        <textarea id="source_text" name="source_text" placeholder="Введите исходный текст" cols="100"
+                                  rows="20">{{ source_text }}</textarea>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="column">
-            <div class="container-textarea">
-                <div class="sub-container-textarea">
-                    <label for="source_text"></label>
-                    <textarea id="target_text" placeholder="Перевод" maxlength="250" cols="80" rows="20"></textarea>
+            <div class="column">
+                <div class="container-textarea">
+                    <div class="sub-container-textarea">
+                        <label for="target_text"></label>
+                        <textarea id="target_text" name="target_text" placeholder="Перевод" cols="100"
+                                  rows="20" readonly>{{ target_text }}</textarea>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-
-
-    </div>
+        <button id="translate_button">Перевод</button>
+    </form>
 
 </div>
 
 {% endblock %}
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#translate_button").click(function (e) {-->
+<!--            console.log("1")-->
+<!--            e.preventDefault();-->
+<!--            $.ajax({-->
+<!--                type: "POST",-->
+<!--                url: "/translate.py",-->
+<!--                data: {-->
+<!--                    source_lang: $("#source_lang").value,-->
+<!--                },-->
+<!--                success: function (result) {-->
+<!--                    alert('ok');-->
+<!--                },-->
+<!--                error: function (result) {-->
+<!--                    alert('error');-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->

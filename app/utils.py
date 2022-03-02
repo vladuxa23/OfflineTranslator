@@ -9,8 +9,8 @@ def download_model(source: str, target: str) -> None:
     model_name = f"Helsinki-NLP/opus-mt-{source}-{target}"
     try:
         print(f"check and download: {model_name}")
-        tokenizer = AutoTokenizer.from_pretrained(model_name, force_download=True)
-        model = AutoModelForSeq2SeqLM.from_pretrained(model_name, force_download=True)
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
     except OSError:
         print(f'Error while fetching model "{model_name}".')
@@ -42,7 +42,7 @@ def get_local_models(cachedir: str = None):
     if cachedir is None:
         cachedir = os.path.expanduser('~')
         cachedir += "/.cache/huggingface/transformers/"
-        print(f"\ncache_folder: {cachedir}\n")
+        # print(f"\ncache_folder: {cachedir}\n")
 
     filenames = glob(cachedir + '*.json')
     result = []
@@ -53,8 +53,8 @@ def get_local_models(cachedir: str = None):
         current = '/'.join(current)
         result = result + [current]
 
-    for elem in set(result):
-        print(elem)
+    # for elem in set(result):
+    #     print(elem)
 
     return set(result)
 
@@ -67,7 +67,13 @@ def get_local_models_by_source(source):
     return [x for x in get_local_models() if f"-{source}-" in x]
 
 
+def get_pairs(models_list):
+    return [(x.split('-')[-2], x.split('-')[-1]) for x in models_list]
+
+
 if __name__ == '__main__':
+    pass
+
     # GET OFFLINE MODELS
     # get_local_models()
 
@@ -85,9 +91,9 @@ if __name__ == '__main__':
     # print(list_online_by_target('ru'))
 
     # DOWNLOAD ALL MODELS WITH RU
-    for elem in list_online_by_target('ru'):
-        source, target = get_source_target_lang_by_model_name(elem)
-        download_model(source, target)
+    # for elem in list_online_by_target('ru'):
+    #     source, target = get_source_target_lang_by_model_name(elem)
+    #     download_model(source, target)
 
     # for elem in list_online_by_source('ru'):
     #     source, target = get_source_target_lang_by_model_name(elem)
