@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="center">
+    <div class="row">
+
+        <div class="column">
+            <label>Перевести с:
+                <select id="source_lang">
+                    <option>ru</option>
+                    <option>en</option>
+                    <option>es</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="column">
+            <label>Перевести на:
+                <select id="target_lang">
+                    <option>ru</option>
+                    <option>en</option>
+                    <option>es</option>
+                </select>
+            </label>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="container-textarea">
+                <div class="sub-container-textarea">
+                    <label for="source_text"></label>
+                    <textarea id="source_text" placeholder="Введите исходный текст" maxlength="250" cols="80" rows="20"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="container-textarea">
+                <div class="sub-container-textarea">
+                    <label for="source_text"></label>
+                    <textarea id="target_text" placeholder="Перевод" maxlength="250" cols="80" rows="20"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}
