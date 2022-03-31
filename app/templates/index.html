@@ -15,8 +15,8 @@
             <div class="column">
                 <label>Перевести с:
                     <select id="source_lang" name="source_lang">
-                        {% for item in lang_pairs %}
-                        <option>{{ item[0] }}</option>
+                        {% for key, value in lang_dict.items() %}
+                        <option value="{{ key }}">{{ value }}</option>
                         {% endfor %}
                     </select>
                 </label>
@@ -25,7 +25,7 @@
             <div class="column">
                 <label>Перевести на:
                     <select id="target_lang" name="target_lang">
-                        <option>ru</option>
+                        <option value="ru">Русский</option>
                     </select>
                 </label>
             </div>
