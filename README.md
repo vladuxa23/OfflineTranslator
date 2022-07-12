@@ -3,7 +3,7 @@
 
 #### Установка
 
-1. pip install -r ./requirements/requirements.txt
+1. pip install -r requirements.txt
 2. скачать модели в кэш
    * раскомментировать блок ```# DOWNLOAD ALL MODELS WITH RU``` в файле utils.py
    * указать, модели для каких языков необходимо скачивать
